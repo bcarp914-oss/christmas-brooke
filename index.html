@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Merry Christmas Brooke!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 50%, #1a472a 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Georgia', serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .snowflake {
+      position: fixed;
+      color: white;
+      font-size: 1.2rem;
+      opacity: 0.8;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      text-align: center;
+      z-index: 10;
+      position: relative;
+      padding: 1rem;
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    .ornament-top {
+      font-size: 3rem;
+      animation: swing 3s ease-in-out infinite;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes swing {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    .greeting {
+      font-size: 2.2rem;
+      color: #ffd700;
+      text-shadow: 
+        0 0 10px rgba(255, 215, 0, 0.5),
+        0 0 20px rgba(255, 215, 0, 0.3),
+        2px 2px 0 #8b0000;
+      margin-bottom: 0.3rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+    }
+
+    .name {
+      font-size: 3.2rem;
+      color: #ff6b6b;
+      text-shadow: 
+        0 0 15px rgba(255, 107, 107, 0.6),
+        3px 3px 0 #8b0000;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 1s forwards, glow 2s ease-in-out infinite 2s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% { 
+        text-shadow: 
+          0 0 15px rgba(255, 107, 107, 0.6),
+          3px 3px 0 #8b0000;
+      }
+      50% { 
+        text-shadow: 
+          0 0 30px rgba(255, 107, 107, 0.9),
+          0 0 50px rgba(255, 215, 0, 0.5),
+          3px 3px 0 #8b0000;
+      }
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin: 1rem 0;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 1.5s forwards;
+    }
+
+    .divider-line {
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    }
+
+    .divider-icon {
+      font-size: 1.5rem;
+      animation: sparkle 1.5s ease-in-out infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .message-box {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 215, 0, 0.4);
+      border-radius: 20px;
+      padding: 1.5rem 1.2rem;
+      margin: 1rem auto;
+      max-width: 90%;
+      width: 340px;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 2s forwards;
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        inset 0 0 30px rgba(255, 215, 0, 0.1);
+    }
+
+    .message {
+      font-size: 1.2rem;
+      color: #fff;
+      line-height: 1.5;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .highlight {
+      color: #ffd700;
+      font-weight: bold;
+    }
+
+    .gift-icon {
+      font-size: 2.5rem;
+      display: inline-block;
+      margin-top: 1rem;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 2.5s forwards, bounce 1s ease-in-out infinite 2.5s;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .footer-message {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-style: italic;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 3.5s forwards;
+      padding: 0 1rem;
+    }
+
+    .deposit-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(145deg, #004080, #002855);
+      border: 2px solid #ffd700;
+      border-radius: 50px;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-family: 'Georgia', serif;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 3s forwards;
+      transition: all 0.3s ease;
+      box-shadow: 
+        0 5px 20px rgba(0, 40, 85, 0.4),
+        0 0 15px rgba(255, 215, 0, 0.2);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .deposit-button:active {
+      transform: scale(0.98);
+      background: linear-gradient(145deg, #005599, #003366);
+    }
+
+    .button-icon {
+      font-size: 1.3rem;
+    }
+
+    .button-text {
+      font-weight: bold;
+    }
+
+    .button-arrow {
+      font-size: 1.3rem;
+      animation: pulse-arrow 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-arrow {
+      0%, 100% { transform: translateX(0); opacity: 1; }
+      50% { transform: translateX(5px); opacity: 0.7; }
+    }
+
+    .trees {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 2.5rem;
+      color: #0d3320;
+      text-shadow: 0 0 10px rgba(0, 100, 0, 0.3);
+      display: flex;
+      justify-content: space-around;
+      opacity: 0.5;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .lights {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0.8rem;
+      z-index: 5;
+    }
+
+    .light {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      animation: twinkle 1s ease-in-out infinite;
+    }
+
+    .light:nth-child(1) { background: #ff0000; animation-delay: 0s; }
+    .light:nth-child(2) { background: #00ff00; animation-delay: 0.2s; }
+    .light:nth-child(3) { background: #ffd700; animation-delay: 0.4s; }
+    .light:nth-child(4) { background: #0066ff; animation-delay: 0.6s; }
+    .light:nth-child(5) { background: #ff0000; animation-delay: 0.8s; }
+    .light:nth-child(6) { background: #00ff00; animation-delay: 1s; }
+    .light:nth-child(7) { background: #ffd700; animation-delay: 0.3s; }
+    .light:nth-child(8) { background: #0066ff; animation-delay: 0.5s; }
+
+    @keyframes twinkle {
+      0%, 100% { 
+        opacity: 1; 
+        box-shadow: 0 0 8px currentColor, 0 0 15px currentColor;
+      }
+      50% { 
+        opacity: 0.4; 
+        box-shadow: 0 0 4px currentColor;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lights">
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+    <div class="light"></div>
+  </div>
+
+  <div class="container">
+    <div class="ornament-top">🎄</div>
+    
+    <h1 class="greeting">Merry Christmas</h1>
+    <h2 class="name">Brooke!</h2>
+    
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-icon">⭐</span>
+      <div class="divider-line"></div>
+    </div>
+    
+    <div class="message-box">
+      <p class="message">
+        This year, you've received a <span class="highlight">special deposit</span> 
+        for your Christmas gift!
+      </p>
+      <div class="gift-icon">🎁</div>
+    </div>
+    
+    <a href="https://mobile.usaa.com" class="deposit-button" target="_blank" rel="noopener">
+      <span class="button-icon">🏦</span>
+      <span class="button-text">Tap to View Your Deposit</span>
+      <span class="button-arrow">→</span>
+    </a>
+    
+    <p class="footer-message">With love and warmest wishes 💝</p>
+  </div>
+
+  <div class="trees">🌲🌲🌲🌲🌲🌲</div>
+
+  <script>
+    // Create snowflakes
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.className = 'snowflake';
+      snowflake.innerHTML = '❄';
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      snowflake.style.fontSize = (Math.random() * 1 + 0.6) + 'rem';
+      snowflake.style.opacity = Math.random() * 0.5 + 0.2;
+      document.body.appendChild(snowflake);
+
+      setTimeout(() => {
+        snowflake.remove();
+      }, 10000);
+    }
+
+    // Create initial snowflakes
+    for (let i = 0; i < 20; i++) {
+      setTimeout(createSnowflake, i * 200);
+    }
+
+    // Continue creating snowflakes
+    setInterval(createSnowflake, 400);
+  </script>
+</body>
+</html>
